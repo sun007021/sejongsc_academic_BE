@@ -1,0 +1,6 @@
+.idea
+study.db
+*.pyc
+__pycache__
+migrations
+alembic.ini
