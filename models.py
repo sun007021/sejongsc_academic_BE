@@ -39,5 +39,5 @@ class Visit(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("commonuser.id"))
     booth_id = Column(Integer, ForeignKey("booth.id"))
-    start_time = Column(DateTime, nullable=False)
-    end_time = Column(DateTime, nullable=False)
+    start_time = Column(DateTime, nullable=True)
+    end_time = Column(DateTime, nullable=True)
