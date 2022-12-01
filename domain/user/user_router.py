@@ -48,9 +48,11 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(),
         "exp": datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     }
     access_token = jwt.encode(data, SECRET_KEY, algorithm=ALGORITHM)
+    otp_key = user.otp_key
 
     return {
         "access_token": access_token,
         "token_type": "bearer",
-        "username": user.username
+        "username": user.username,
+        "otp_key": otp_key
     }
