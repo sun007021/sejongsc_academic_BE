@@ -10,7 +10,7 @@ class CommonUser(Base):
     username = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
     name = Column(String, nullable=False)
-    student_id = Column(String, nullable=False)
+    student_id = Column(String, nullable=True)
     permission = Column(Integer, nullable=False)
     otp_key = Column(String, nullable=True)
     create_date = Column(DateTime, nullable=False)
