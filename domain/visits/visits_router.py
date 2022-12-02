@@ -15,11 +15,14 @@ router = APIRouter(
 
 @router.get("/booth/{booth_id}", response_model=list[visits_schema.Visits], status_code=status.HTTP_200_OK)
 def get_booth_visits(booth_id: int = Path(title="booth id"), db: Session = Depends(get_db)):
-     _result = visits_crud.get_user_visit(db, booth_id)
-     return _result
+    _result = visits_crud.get_user_visit(db, booth_id)
+    if _result:
+        return _result
+    else:
+        return False
+
+
 
 @router.post("/")
-def create_visits(visit_create:visits_schema.VisitCreate, db: Session = Depends(get_db)):
-    visits_crud.create_visit(db,visit_create)
-
-
+def create_visits(visit_create: visits_schema.VisitCreate, db: Session = Depends(get_db)):
+    visits_crud.create_visit(db, visit_create)
