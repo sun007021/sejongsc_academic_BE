@@ -22,7 +22,11 @@ def get_booth_visits(booth_id: int = Path(title="booth id"), db: Session = Depen
         return False
 
 
-
 @router.post("/")
 def create_visits(visit_create: visits_schema.VisitCreate, db: Session = Depends(get_db)):
     visits_crud.create_visit(db, visit_create)
+
+
+@router.put("/{visit_id}")
+def update_end_time(visit_id: int = Path(title="visit id"), db: Session = Depends(get_db)):
+    visits_crud.update_end_time(db, visit_id)
