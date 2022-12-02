@@ -58,7 +58,7 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(),
     }
 
 
-@router.post("/admin/login", response_model=user_schema.Token)
+@router.post("/admin/login", response_model=user_schema.TokenAdmin)
 def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(),
                            db: Session = Depends(get_db)):
     # check username and password
