@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.get("/booth/{booth_id}", response_model=list[visits_schema.Visits], status_code=status.HTTP_200_OK)
+@router.get("/booth/{booth_id}", status_code=status.HTTP_200_OK)
 def get_booth_visits(booth_id: int = Path(title="booth id"), db: Session = Depends(get_db)):
     _result = visits_crud.get_user_visit(db, booth_id)
     if _result:
