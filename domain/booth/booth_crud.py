@@ -25,8 +25,6 @@ def update_booth(booth_info: BoothCreate, db: Session, booth_id: int):
     db_booth = db.query(Booth).filter(Booth.id == booth_id).first()
     db_booth.name = booth_info.name
     db_booth.description = booth_info.description
-    db_booth.mapx = booth_info.mapx
-    booth_info.mapy = booth_info.mapy
 
     db.add(db_booth)
     db.commit()
