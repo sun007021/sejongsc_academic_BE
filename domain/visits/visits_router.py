@@ -15,7 +15,7 @@ router = APIRouter(
 
 @router.get("/user/{username}", status_code=status.HTTP_200_OK)
 def get_user_visits_booth(username: str = Path(title="user name"), db: Session = Depends(get_db)):
-    result = visits_crud.get
+    result = visits_crud.get_user_visits_booth(db, username)
     return result
 
 @router.get("/booth/{booth_id}", status_code=status.HTTP_200_OK)
