@@ -15,7 +15,8 @@ router = APIRouter(
 @router.get("/key", status_code=status.HTTP_200_OK)
 def get_opt_key(username: str, db: Session = Depends(get_db)):
     otp_key = otp_crud.get_otp_key(db, username)
-    return {"key": otp_key}
+    server_otppass = otp_util.get_otppass(otp_key)
+    return {"key": otp_key, "server_otppass": server_otppass}
 
 
 @router.post("/auth")
@@ -28,7 +29,7 @@ def otp_pass_auth(user: otp_schema.OTPAuthForm, db: Session = Depends(get_db)):
         db_user = user_crud.get_user(db, username)
         permission = db_user.permission
         booth_id = user.booth_id
-        visits_crud.create_visit(db,username, booth_id)
+        visits_crud.create_visit(db, username, booth_id)
         return {"permission": permission}
     else:
         return {"permission": 0}
