@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from domain.otp import otp_util
 from domain.user.user_schema import UserCreate
-from models import CommonUser
+from models import CommonUser, AdminUser
 
 
 def create_user(db: Session, user_create: UserCreate):
@@ -21,3 +21,7 @@ def create_user(db: Session, user_create: UserCreate):
 
 def get_user(db: Session, username: str) -> CommonUser:
     return db.query(CommonUser).filter(CommonUser.username == username).first()
+
+
+def get_admin(db: Session, username: str) -> AdminUser:
+    return db.query(AdminUser).filter(AdminUser.username == username).first()
