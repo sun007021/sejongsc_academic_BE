@@ -21,6 +21,9 @@ class Booth(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
+    description = Column(String, nullable=True)
+    mapx = Column(String, nullable=True)
+    mapy = Column(String, nullable=True)
 
 
 class AdminUser(Base):
