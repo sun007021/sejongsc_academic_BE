@@ -25,3 +25,7 @@ def get_booth_list(db: Session = Depends(get_db)):
 @router.post("/", status_code=status.HTTP_200_OK)
 def create_booth(booth_create: BoothCreate, db: Session = Depends(get_db)):
     create_booth_to(booth_create, db)
+
+@router.put("/{booth_id}")
+def update_booth_info(booth_info: BoothCreate, booth_id: int = Path(title="booth id"),db: Session = Depends(get_db)):
+    booth_crud.update_booth(booth_info, db, booth_id)
