@@ -18,6 +18,7 @@ def get_user_visits_booth(username: str = Path(title="user name"), db: Session =
     result = visits_crud.get_user_visits_booth(db, username)
     return result
 
+
 @router.get("/booth/{booth_id}", status_code=status.HTTP_200_OK)
 def get_booth_visits(booth_id: int = Path(title="booth id"), db: Session = Depends(get_db)):
     _result = visits_crud.get_user_visit(db, booth_id)
@@ -35,3 +36,9 @@ def create_visits(visit_create: visits_schema.VisitCreate, db: Session = Depends
 @router.put("/{visit_id}")
 def update_end_time(visit_id: int = Path(title="visit id"), db: Session = Depends(get_db)):
     visits_crud.update_end_time(db, visit_id)
+
+
+@router.get("/recent/{booth_id}", status_code = status.HTTP_200_OK)
+def get_recent_visit_user_num(booth_id: int = Path(title="booth id"), db: Session = Depends(get_db)):
+    return visits_crud.get_recent_booth_visit_user_number(db,booth_id)
+
