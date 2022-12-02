@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from domain.user import user_crud
 from domain.visits import visits_schema
-from models import Visit
+from models import Visit, CommonUser
 
 
 def get_user_visit(db: Session, booth_id: int):
@@ -15,12 +15,12 @@ def get_user_visit(db: Session, booth_id: int):
     else:
         return False
 
-def create_visit(db: Session, visit_create: visits_schema.VisitCreate):
+def create_visit(db: Session, username: str, booth_id: int):
+    user_id = db.query(CommonUser).filter(CommonUser.username == username).first().id
     db_visit = Visit(
-        user_id=visit_create.user_id,
-        booth_id=visit_create.booth_id,
+        user_id=user_id,
+        booth_id=booth_id,
         start_time=datetime.datetime.now(),
-        end_time=datetime.datetime.now()
     )
     db.add(db_visit)
     db.commit()

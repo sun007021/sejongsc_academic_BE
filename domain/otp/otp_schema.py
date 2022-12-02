@@ -6,3 +6,4 @@ from pydantic import BaseModel, validator
 class OTPAuthForm(BaseModel):
     username: str
     otppass: str
+    booth_id: int
