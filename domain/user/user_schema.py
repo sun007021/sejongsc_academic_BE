@@ -7,8 +7,13 @@ class Token(BaseModel):
     access_token: str
     token_type: str
     username: str
+    otp_key: str
 
-
+class TokenAdmin(BaseModel):
+    access_token: str
+    token_type: str
+    username: str
+    booth_id: int
 class UserAuth(BaseModel):  # sejong 확인
     student_id: str
     password: str
