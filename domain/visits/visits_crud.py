@@ -14,7 +14,7 @@ def get_visit(db: Session, visit_id: int):
 
 
 def get_user_visits_booth(db: Session, username: str):  # 해당 유저가 방문한 기록 중 endtime 존재하는 것들 반환
-    user_id = user_crud.get_user(username).id
+    user_id = user_crud.get_user(db, username).id
     visit_list = db.query(Visit).filter(and_(Visit.user_id == user_id), (Visit.end_time != None)).all()
     return visit_list
 
