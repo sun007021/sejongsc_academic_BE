@@ -8,7 +8,7 @@ from domain.user import user_util, user_crud
 from domain.visits import visits_crud
 
 router = APIRouter(
-    prefix="/api/opt",
+    prefix="/api/otp",
 )
 
 
