@@ -22,7 +22,8 @@ router = APIRouter(
 
 @router.post("/", status_code=status.HTTP_200_OK)
 def user_register(_user_register: UserCreate, db: Session = Depends(get_db)):
-    user_crud.create_user(db=db, user_create=_user_register)
+    if user_crud.create_user(db=db, user_create=_user_register) is False:
+        return False
 
 
 @router.post("/authsejong", status_code=status.HTTP_200_OK)

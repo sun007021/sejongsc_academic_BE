@@ -8,6 +8,9 @@ from models import CommonUser, AdminUser
 
 
 def create_user(db: Session, user_create: UserCreate):
+    if get_user_num_by_student_id(db, user_create.student_id) > 3:
+        return False
+
     db_user = CommonUser(username=user_create.username,
                          password=user_create.password1,
                          name=user_create.name,
@@ -22,6 +25,8 @@ def create_user(db: Session, user_create: UserCreate):
 def get_user(db: Session, username: str) -> CommonUser:
     return db.query(CommonUser).filter(CommonUser.username == username).first()
 
+def get_user_num_by_student_id(db: Session, student_id: str):
+    return db.query(CommonUser).filter(CommonUser.student_id==student_id).count()
 
 def get_admin(db: Session, username: str) -> AdminUser:
     return db.query(AdminUser).filter(AdminUser.username == username).first()
