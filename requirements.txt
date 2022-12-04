@@ -7,3 +7,4 @@ python-jose[cryptography]
 pyotp
 sejong-univ-auth
 uvicorn
+python-multipart
