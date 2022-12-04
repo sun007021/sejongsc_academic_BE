@@ -5,3 +5,5 @@ pydantic~=1.10.2
 alembic~=1.8.1
 python-jose[cryptography]
 pyotp
+sejong-univ-auth
+uvicorn
