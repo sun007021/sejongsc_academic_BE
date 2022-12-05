@@ -40,5 +40,5 @@ def update_end_time(visit_id: int = Path(title="visit id"), db: Session = Depend
 
 @router.get("/recent/{booth_id}", status_code=status.HTTP_200_OK)
 def get_recent_visit_user_num(booth_id: int = Path(title="booth id"), db: Session = Depends(get_db)):
-    return visits_crud.get_recent_booth_visit_user_number(db, booth_id)
+    return {"recent_visit_user_num": visits_crud.get_recent_booth_visit_user_number(db, booth_id)}
     #return {"recent_visit_user_num": 7}
