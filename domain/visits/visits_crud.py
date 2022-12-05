@@ -15,9 +15,8 @@ def get_visit(db: Session, visit_id: int):
 
 def get_recent_booth_visit_user_number(db: Session, booth_id: int):
     recent_visit_user_num = db.query(Visit)\
-        .filter(Visit.booth_id == booth_id)\
-        .filter((datetime.datetime.now() - Visit.start_time).total_seconds() <= 1800)\
-        .count()
+        .filter(Visit.booth_id == booth_id).count()
+        #.filter((datetime.datetime.now() - Visit.start_time).total_seconds() <= 1800)\
     # first_start_time=db.query(Visit).filter(Visit.booth_id==booth_id).first()
     # time=(datetime.datetime.now()-first_start_time.start_time).total_seconds()
     # print(time)
